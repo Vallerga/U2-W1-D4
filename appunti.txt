@@ -1,0 +1,6 @@
+Oggi parliamo di animazioni come nel caso di transform. Un tempo erano richiesti implementazioni esterne come nel caso di flash, adesso la maggiorparte delle possibilità sono implementate dal browser usando proprietà CSS.
+iniziamo parlando di TRANSFORM, che abbiamo già visto con translate: ha diverse proprietà anche associabili in coppia. le transformazioni modificano l'oggetto ma non ne cambiano lo spazio occupato. Quindi un DIV display block
+--> ROTATE ruota in gradi positivi in senso orario (spesso è presente anche un tools per vedere gli effetti a varie gradazioni)
+--> SKEW ragiona sempre in deg e permette di distorcere il div. accetta due input e distorce (shearmapping) come se tirassi gli angoli verticalmente od orrizontalmente (param1 e param2) gli angoli del div. se si applica solo valore sarà solamente sull'asse x, mentre con 2 valori opera rispettivamente sull'asse x e sull'asse y.
+--> SCALE scala l'elemento ingrandendo e rimpiccilendo il bersaglio. Il parametro di base è 1 e se metto 2 vuol dire che raddoppio, triplico, etc. l'ingrandimento. si può lavorare sui singoli assi.
+--> TRANSLATE permette di translare il target lungo l'asse x, y, z. lo usiamo per centrare gli oggetti per esempio. Permette movimenti precisi e serve durante le animazioni: come una transizione.
