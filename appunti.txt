@@ -1,6 +1,65 @@
+ANIMAZIONI
 Oggi parliamo di animazioni come nel caso di transform. Un tempo erano richiesti implementazioni esterne come nel caso di flash, adesso la maggiorparte delle possibilità sono implementate dal browser usando proprietà CSS.
+
+TRANSFORM
 iniziamo parlando di TRANSFORM, che abbiamo già visto con translate: ha diverse proprietà anche associabili in coppia. le transformazioni modificano l'oggetto ma non ne cambiano lo spazio occupato. Quindi un DIV display block
 --> ROTATE ruota in gradi positivi in senso orario (spesso è presente anche un tools per vedere gli effetti a varie gradazioni)
 --> SKEW ragiona sempre in deg e permette di distorcere il div. accetta due input e distorce (shearmapping) come se tirassi gli angoli verticalmente od orrizontalmente (param1 e param2) gli angoli del div. se si applica solo valore sarà solamente sull'asse x, mentre con 2 valori opera rispettivamente sull'asse x e sull'asse y.
 --> SCALE scala l'elemento ingrandendo e rimpiccilendo il bersaglio. Il parametro di base è 1 e se metto 2 vuol dire che raddoppio, triplico, etc. l'ingrandimento. si può lavorare sui singoli assi.
 --> TRANSLATE permette di translare il target lungo l'asse x, y, z. lo usiamo per centrare gli oggetti per esempio. Permette movimenti precisi e serve durante le animazioni: come una transizione.
+
+TRANSIZIONI
+Le transizioni permettono di addolcire/rallentare la transformazione di un target. Crea l'effetto di un movimento. Si usa quindi la funzionalità CSS transition:
+
+.box {
+    transition: transform 2s;
+}
+.box:hover {
+    transform: rotate(45deg);
+}
+
+Quindi indichiamo che la funzione transition è in attesa di una specifica proprietà che cambia (nel nostro caso transform) e indichiamo il tempo che vogliamo impiegare. Quindi va indicato prima il listener (transition) e poi la transformazione.
+Possiamo applicare un delay usando il comando LINEAR:
+
+.box {
+    transition: transform 2s linear 4s;
+}
+.box:hover {
+    transform: rotate(45deg);
+}
+
+oppure applicare un accelerazione con ease o ease in. Ci sono vari comandi (ease è il defoult delle timing function). quindi transition a 4 parametri: targetlistener, timetotransition timefunction(ease,linear, ease in etc) time delay.
+Possiamo concatenarepiù listener con diversi parametri mettendo una virgola e impostando per ognuna i parametri. Altrimenti possiamo indicare all e ascolterà tutte le transformazioni a questo target.
+Possiamo ascoltare solamente modifiche misurabili quindi non si applica su display: none ma possiamo per esempio fare un effetto di opacità.
+
+TIMING FUNCTION
+
+possiamo implementare diverse modalità con TRANSITION-TIMING-FUNCTION che sono: ease, linear, ease-in, ease-out,ease-in-out. In ogni modalità cambia l'accelerazione, dove linear è constante, gli altri cambiano l'accelerazione iniziale, finale, centrale etc... il valore di defoult è ease che parte accelerato e poi rallenta.
+
+In tutti questi casi la transformazione è uguale in un verso (originale --> transformato) e viceversa. possiamo anche avere effetti diversi. Per fare ciò devo mettere un listener (ovvero scrivere transition) anche nel :hover (o altri sistemi di ricezione input). E' poco intuitivo ma la prima transizione è quella di ritorno, quella di andata va scritta nel bersaglio.
+
+
+transition-timing-function: ease
+
+ANIMAZIONI
+
+La parola chiave per le animazioni è ANIMATION. Funziona similarmente a transition ma ha alcune differenze. Può evere un deelay ma non ha bisogno di un cambiamento di stato e parte autonomaticamente. 
+I parametri di animation sono: nome, durata, timing-function, delay, iteration-count. il valore di iteration-count è 1, e indica il numero di volte che si ripete, può essere anche impostato come infinite.
+quindi immettiamo il codice:
+animation: nomeAnimazioneKeyframes, durataAnimazione, linear/ease/etc, delay, numeroIterazioni.
+
+e poi usando la parola chiave da sapere @keyframes
+possiamo specificare i stati di transizione:
+@keyframes myAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(45deg);
+        background-color: yellow;
+    }
+}
+ ci da un valore di partenza e di arrivo, si può anche considerare come se dicessimo 0% è from e 100% è to. Ovviamente la percentuale dell'animazione.
+ possiamo anche mettere dei valori intermedi, tipo 50% e questo ci permette per esempio di dare un valore di arrivo al 50% e il 100% è il valore di ritorno. Quindi l'animazione tornerà al valore originale in un unica animazione.
+
